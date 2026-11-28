@@ -23,9 +23,10 @@ OBJ* pop(OBJ* top) {
     return ptr_next;
 }
 void show(const OBJ* top) {
+    printf("\n");
     const OBJ* current = top;
     while (current != NULL) {
-        printf("%d\n", current->data);
+        printf("%d ", current->data);
         current = current->next;
     }
 }
@@ -49,27 +50,15 @@ int get_num() {
     if (c == '\n' || c == EOF) ungetc(c, stdin);
     return res_num;
 }
-
-int stack() {
-    system("chcp 65001");
-    OBJ* top = NULL;
-    int c;
-    while (1) {
-        c = getchar();
-        if (c == '\n' || c == EOF) break;
-        ungetc(c, stdin);
-
-        int num = get_num();
-        if (num == -1) return -1;;
-
-        top = push(top, num);
-    }
-    show(top);
+void clean_stack(OBJ* top) {
     while (top != NULL) {
         OBJ* tmp = top;
         top = top->next;
         free(tmp);
     }
-    return 0;
+}
+OBJ* stack() {
+    OBJ* top = NULL;
+    return top;
 }
 
